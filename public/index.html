@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" />
+    <button>Reg</button>
+    <br />
+    <br />
+    <div></div>
+    <button>List All</button>
+
+    <script defer>
+      document.querySelector("button").addEventListener("click", () => {
+        if (
+          email.value &&
+          email.value.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/)
+        ) {
+          // console.log(email.value);
+          fetch(`http://localhost:3000/reg?email=${email.value}`)
+            .then(res => {
+              return res.json();
+            })
+            .then(data => {
+              document.querySelector("div").innerHTML = `<div>${
+                data.message
+              }</div>`;
+              // setTimeout(() => {
+              //   document
+              //     .querySelector("div")
+              //     .parentElement.removeChild(document.querySelector("div"));
+              // }, 2000);
+            });
+
+          // document.querySelector("div").innerHTML = "asdasdsad";
+        } else {
+          email.focus();
+          alert("Please enter correct email first");
+        }
+      });
+    </script>
+  </body>
+</html>

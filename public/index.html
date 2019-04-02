@@ -16,7 +16,8 @@
     <button>List All</button>
 
     <script defer>
-      document.querySelector("button").addEventListener("click", () => {
+      document.querySelector("input + button").addEventListener("click", () => {
+        email.value = email.value.toLowerCase();
         if (
           email.value &&
           email.value.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/)
@@ -42,6 +43,11 @@
           email.focus();
           alert("Please enter correct email first");
         }
+      });
+      document.querySelector("div + button").addEventListener("click", () => {
+        // console.log("list all");
+        fetch(`http://localhost:3000/all`)
+        .then(res => console.log(res));
       });
     </script>
   </body>

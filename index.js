@@ -32,3 +32,7 @@ app.get("/reg", (req, res) => {
     );
   }
 });
+
+app.get("/all", (req, res) => {
+  res.send(emails);
+});
